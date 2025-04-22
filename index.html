@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BMI Calculator</title>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">;
+	<style>
+		body {
+			background-color: beige;
+			font-family: Arial, sans-serif;
+		}
+		button:hover {
+			background-color: lightgray;
+		}
+		input, button {
+			padding: 10px;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<center>
+	<div class="container">
+		<h1>BMI Calculator</h1>
+		<p>Input your weight and height so it can compute your BMI (Body Mass Index)</p>
+		<img src="bmi.jpg" height="400px" alt="BMI Chart">
+		<br>
+		<input type="text" placeholder="Input your weight in kg" id="weight">
+		<br>
+		<input type="text" placeholder="Input your height in meters" id="height">
+		<br>
+		<button onclick="sapphire()">Calculate BMI</button>
+		<p id="show_here"></p>
+	</div>
+</center>
+
+<script>
+function sapphire() {
+	var weight = parseFloat(document.getElementById("weight").value);
+	var height = parseFloat(document.getElementById("height").value);
+	var result = document.getElementById("show_here");
+
+	if (!weight || !height || height <= 0) {
+		result.innerHTML = "Please enter valid weight and height.";
+		return;
+	}
+
+	var bmi = weight / (height * height);
+	var status = "";
+
+	if (bmi < 18.5) {
+		status = "Underweight";
+	} else if (bmi < 24.9) {
+		status = "Normal weight";
+	} else if (bmi < 29.9) {
+		status = "Overweight";
+	} else {
+		status = "Obese";
+	}
+
+	result.innerHTML = `Your BMI is ${bmi.toFixed(2)} (${status})`;
+}
+</script>
+
+</body>
+</html>
